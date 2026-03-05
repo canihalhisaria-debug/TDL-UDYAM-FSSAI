@@ -1,67 +1,27 @@
-;; ============================================
-;; TDL: UDYAM + FSSAI in Company Master & Invoice Print
-;; ============================================
+;; UDYAM & FSSAI in Company Master and Invoice Print
 
 [System: UDF]
-    UDYAMNumber : String : 10001
-    FSSAINumber : String : 10002
+    UDYAMNo : String : 10001
+    FSSAINo : String : 10002
 
+[#Part: Company Details]
+    Add: Line: After: GST Details: UDYAM Line
 
-;; ------------------------------
-;; COMPANY MASTER ME FIELD ADD
-;; ------------------------------
+[Line: UDYAM Line]
+    Field: Medium Prompt, UDYAM Field
 
-[#Part: CMP Info]
-    Add    : Line : After : CMP GSTIN : UDYAMLine
+[Field: UDYAM Field]
+    Use: Name Field
+    Storage: UDYAMNo
+    Prompt: "UDYAM Number"
 
-[Line: UDYAMLine]
-    Fields : Medium Prompt, UDYAMField
+[#Part: Company Details]
+    Add: Line: After: UDYAM Line: FSSAI Line
 
-[Field: UDYAMField]
-    Use     : Name Field
-    Storage : UDYAMNumber
-    Set Always : Yes
-    Width   : 30
-    Prompt  : "UDYAM No.: "
+[Line: FSSAI Line]
+    Field: Medium Prompt, FSSAI Field
 
-
-[#Part: CMP Info]
-    Add    : Line : After : UDYAMLine : FSSAILine
-
-[Line: FSSAILine]
-    Fields : Medium Prompt, FSSAIField
-
-[Field: FSSAIField]
-    Use     : Name Field
-    Storage : FSSAINumber
-    Set Always : Yes
-    Width   : 30
-    Prompt  : "FSSAI Lic No.: "
-
-
-;; ------------------------------
-;; INVOICE PRINT ME SHOW KARNA
-;; ------------------------------
-
-[#Part: EI Comp Info]
-    Add : Line : After : EI Comp Name : PrintUDYAM
-
-[Line: PrintUDYAM]
-    Fields : PrintUDYAMField
-
-[Field: PrintUDYAMField]
-    Use    : Name Field
-    Set as : "UDYAM: " + $$String:$UDYAMNumber
-    Width  : 50
-
-
-[#Part: EI Comp Info]
-    Add : Line : After : PrintUDYAM : PrintFSSAI
-
-[Line: PrintFSSAI]
-    Fields : PrintFSSAIField
-
-[Field: PrintFSSAIField]
-    Use    : Name Field
-    Set as : "FSSAI: " + $$String:$FSSAINumber
-    Width  : 50
+[Field: FSSAI Field]
+    Use: Name Field
+    Storage: FSSAINo
+    Prompt: "FSSAI Number"
