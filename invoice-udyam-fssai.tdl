@@ -1,27 +1,27 @@
-;; UDYAM & FSSAI in Company Master and Invoice Print
+;; Minimal TDL: Add UDYAM & FSSAI fields in Company Alter
 
 [System: UDF]
     UDYAMNo : String : 10001
     FSSAINo : String : 10002
 
-[#Part: Company Details]
-    Add: Line: After: GST Details: UDYAM Line
+[#Part: Company Info]
+    Add : Line : After : GST Details : Line UDYAM
+    Add : Line : After : Line UDYAM : Line FSSAI
 
-[Line: UDYAM Line]
-    Field: Medium Prompt, UDYAM Field
+[Line: Line UDYAM]
+    Field : Medium Prompt, Field UDYAM
 
-[Field: UDYAM Field]
-    Use: Name Field
-    Storage: UDYAMNo
-    Prompt: "UDYAM Number"
+[Field: Field UDYAM]
+    Use     : Name Field
+    Storage : UDYAMNo
+    Set As  : ""
+    Prompt  : "UDYAM Number"
 
-[#Part: Company Details]
-    Add: Line: After: UDYAM Line: FSSAI Line
+[Line: Line FSSAI]
+    Field : Medium Prompt, Field FSSAI
 
-[Line: FSSAI Line]
-    Field: Medium Prompt, FSSAI Field
-
-[Field: FSSAI Field]
-    Use: Name Field
-    Storage: FSSAINo
-    Prompt: "FSSAI Number"
+[Field: Field FSSAI]
+    Use     : Name Field
+    Storage : FSSAINo
+    Set As  : ""
+    Prompt  : "FSSAI Number"
