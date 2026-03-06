@@ -2,21 +2,21 @@
 UdyamNo : String : 10001
 FssaiNo : String : 10002
 
-[#Part: Company Info]
-Add : Line : After : Company Name : UdyamLine
+[#Part: CMP Base Info]
+Add : Line : After : CMP Name : UdyamLine
 
 [Line: UdyamLine]
-Fields : Long Prompt, UdyamField
+Fields : Medium Prompt, UdyamField
 
 [Field: UdyamField]
 Use : Name Field
 Storage : UdyamNo
 
-[#Part: Company Info]
+[#Part: CMP Base Info]
 Add : Line : After : UdyamLine : FssaiLine
 
 [Line: FssaiLine]
-Fields : Long Prompt, FssaiField
+Fields : Medium Prompt, FssaiField
 
 [Field: FssaiField]
 Use : Name Field
