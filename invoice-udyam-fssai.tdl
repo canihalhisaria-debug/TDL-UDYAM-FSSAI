@@ -1,27 +1,23 @@
-;; Minimal TDL: Add UDYAM & FSSAI fields in Company Alter
-
 [System: UDF]
-    UDYAMNo : String : 10001
-    FSSAINo : String : 10002
+UdyamNo : String : 10001
+FssaiNo : String : 10002
 
 [#Part: Company Info]
-    Add : Line : After : GST Details : Line UDYAM
-    Add : Line : After : Line UDYAM : Line FSSAI
+Add : Line : After : Company Name : UdyamLine
 
-[Line: Line UDYAM]
-    Field : Medium Prompt, Field UDYAM
+[Line: UdyamLine]
+Fields : Long Prompt, UdyamField
 
-[Field: Field UDYAM]
-    Use     : Name Field
-    Storage : UDYAMNo
-    Set As  : ""
-    Prompt  : "UDYAM Number"
+[Field: UdyamField]
+Use : Name Field
+Storage : UdyamNo
 
-[Line: Line FSSAI]
-    Field : Medium Prompt, Field FSSAI
+[#Part: Company Info]
+Add : Line : After : UdyamLine : FssaiLine
 
-[Field: Field FSSAI]
-    Use     : Name Field
-    Storage : FSSAINo
-    Set As  : ""
-    Prompt  : "FSSAI Number"
+[Line: FssaiLine]
+Fields : Long Prompt, FssaiField
+
+[Field: FssaiField]
+Use : Name Field
+Storage : FssaiNo
